@@ -9,19 +9,31 @@ class Ninja {
         console.log(this.name);
     }
     showStats() {
-        console.log(this.name, this.strength, this.speed, this.health);
+        console.log("Name: " + this.name, "Strength: " + this.strength, "Speed " + this.speed, "Health: " + this.health);
     }
     drinkSake() {
         this.health += 10;
     }
 }
 
-class Sensei extends ninja{
+class Sensei extends Ninja{
     constructor(name, health){
-        
+        super(name, health)
+        this.wisdom = 10
+        this.health = 200
+        this.speed = 10
+        this.strength = 10
+    }
+    speakWisdom() {
+        this.drinkSake
+        console.log("What one programmer can do in one month, two programmers can do in two months.")
     }
 }
 
-const ninja1 = new Ninja("Hyabusa");
+const superSensei = new Sensei("Master Splinter");
+superSensei.speakWisdom();
+superSensei.showStats();
+
+const ninja1 = new Ninja("Hyabusa", 70);
 ninja1.sayName();
 ninja1.showStats();
