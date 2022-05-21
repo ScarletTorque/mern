@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 
-
-const Pokemons = ()=>{
+const Pokemons = () => {
     let [pokemonList, setPokemonList] = useState([])
 
-    const getPokemon = ()=>{
+    const getPokemon = () => {
         console.log("getting the Pokemon now...")
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=807&offset=0")
-            .then(response =>{
-                return response.json()
-            })
-            .then(convertedResponse =>{
-                console.log("got the response ---> ", convertedResponse)
-                setPokemonList(convertedResponse.results)
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=807&offset=0")
+
+        .then(response => {
+            console.log("got the response ---> ", response)
+            setPokemonList(response.data.results)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
 
@@ -27,8 +25,8 @@ const Pokemons = ()=>{
         <div>
             <button onClick={getPokemon}>Fetch Pokemon</button>
             {
-                pokemonList.map((pokemon, idx)=>{
-                    return(
+                pokemonList.map((pokemon, idx) => {
+                    return (
                         <div key={idx}>
                             <h3>{pokemon.name}</h3>
                         </div>
