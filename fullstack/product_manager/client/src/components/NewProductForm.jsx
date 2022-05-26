@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const NewProductForm = (props) => {
 
@@ -10,7 +11,7 @@ const NewProductForm = (props) => {
     //state variable to store validation errors inside of
     let[errors, setErrors] = useState({})
 
-
+    const history = useHistory();
 
     //submithandler
     const addProduct = (e)=>{
@@ -34,6 +35,7 @@ const NewProductForm = (props) => {
 
                 props.setNewProductToggle(!props.NewProductToggle)
 
+                history.push("/") //redirect after updating form
 
             }
         })
