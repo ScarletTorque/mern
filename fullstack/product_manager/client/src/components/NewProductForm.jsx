@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const NewProductForm = () => {
+const NewProductForm = (props) => {
 
     let [title, setTitle] = useState("");
     let [price, setPrice] = useState("");
@@ -31,6 +31,10 @@ const NewProductForm = () => {
                 setTitle("");
                 setPrice("");
                 setDescription("");
+
+                props.setNewProductToggle(!props.NewProductToggle)
+
+
             }
         })
         .catch(err=>console.log("errrr", err))
@@ -42,6 +46,7 @@ const NewProductForm = () => {
 
     return (
         <div>
+            <h3>Create Product</h3>
             <form onSubmit={addProduct}>
                 <div className="form-group">
                     <label htmlFor="">Title:</label>
